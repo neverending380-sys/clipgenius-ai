@@ -668,3 +668,109 @@ const generatedClips = [
         "hashtags":  ["#epic", "#moment", "#trending"]
     }
 ];
+# ClipGenius AI - Convert YouTube Videos to Shorts
+
+ClipGenius AI is an intelligent platform that transforms long-form YouTube videos into engaging short-form content optimized for platforms like YouTube Shorts, TikTok, and Instagram Reels.
+
+## Features
+
+- **Smart Clip Detection**: AI analyzes viewer engagement patterns to identify the most viral-worthy moments
+- **AI Caption Generation**:  Automatically generate engaging captions that match video content and current trends
+- **Hashtag Optimization**: Generate trending and relevant hashtags based on video content
+- **Multi-Platform Upload**: Connect and upload directly to YouTube, TikTok, and Instagram
+- **Auto-Scheduling**: Schedule posts for optimal engagement times
+
+## Project Structure
+
+```
+clipgenius-ai/
+├── index.html       # Main HTML file with structure
+├── styles.css       # Custom CSS styles
+├── config.js        # Configuration data (platforms, features, clips)
+├── app.js           # Main application logic
+├── README.md        # This file
+└── assets/          # (Optional) Images, icons, etc.
+```
+
+## Getting Started
+
+1. Clone the repository
+2. Open `index.html` in a modern web browser
+3. Start using the application
+
+## Browser Requirements
+
+- Modern browser with ES6 support
+- JavaScript enabled
+- Internet connection for CDN resources
+
+## Technologies Used
+
+- HTML5
+- CSS3 with Tailwind CSS
+- Vanilla JavaScript (ES6+)
+- Font Awesome Icons
+
+## CDN Dependencies
+
+- Tailwind CSS: https://cdn.tailwindcss.com
+- Font Awesome 5. 15.3: https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3
+
+## Usage
+
+### Processing a Video
+
+1. Paste a YouTube URL in the input field
+2. Click "Process Video"
+3. Wait for AI analysis to complete
+4. Review generated clips and captions
+5. Connect social media accounts
+6. Upload to desired platforms
+
+### Connecting Social Platforms
+
+1. Click "Connect" on the desired platform card
+2. Authorize the application
+3. Select auto-upload preferences
+4. Save settings
+
+## Features Details
+
+### Smart Clip Detection
+- Emotion detection in video content
+- Audience retention analysis
+- Automatic trimming to optimal lengths
+
+### AI Caption Generation
+- Multiple caption style options
+- Trend analysis integration
+- Auto-timing synchronization with video
+
+### Hashtag Optimization
+- Platform-specific hashtag generation
+- Trend prediction algorithms
+- Performance analytics tracking
+
+## Color Scheme
+
+- Primary: #6366f1
+- Primary Dark: #4f46e5
+- Secondary: #10b981
+- Accent: #f59e0b
+- Dark:  #1f2937
+
+## Future Enhancements
+
+- Backend API integration
+- User authentication and profiles
+- Video analytics dashboard
+- Advanced AI models
+- Batch processing capabilities
+
+## License
+
+All rights reserved © 2024 ClipGenius AI
+
+## Support
+
+For issues and questions, please contact support or create an issue in the repository.
