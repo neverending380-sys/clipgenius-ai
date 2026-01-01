@@ -357,6 +357,241 @@
 . animate-pulse-slow {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+// Main Application Logic
+
+// Initialize application
+document.addEventListener("DOMContentLoaded", function() {
+    initializeApp();
+    renderDynamicContent();
+    attachEventListeners();
+});
+
+// Initialize the application
+function initializeApp() {
+    console.log("ClipGenius AI initialized");
+}
+
+// Render dynamic content from config
+function renderDynamicContent() {
+    renderSocialPlatforms();
+    renderAIFeatures();
+    renderGeneratedClips();
+}
+
+// Render social platforms section
+function renderSocialPlatforms() {
+    const container = document.getElementById("social-platforms-container");
+    if (!container) return;
+    
+    container.innerHTML = "";
+    
+    socialPlatforms.forEach(platform => {
+        const platformElement = document.createElement("div");
+        platformElement.className = "flex items-center p-4 bg-white rounded-xl shadow-sm";
+        platformElement.innerHTML = `
+            <div class="w-12 h-12 rounded-full bg-${platform.color}-100 flex items-center justify-center mr-4">
+                <i class="fab fa-${platform.icon} text-${platform.color}-600 text-2xl"></i>
+            </div>
+            <div class="flex-grow">
+                <h4 class="font-bold">${platform.name}</h4>
+                <p class="text-sm text-gray-500">${platform.description}</p>
+            </div>
+            <button class="px-4 py-2 ${platform.connected ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-700"} rounded-lg hover:bg-gray-200 transition-colors connect-btn" data-platform="${platform.name}">
+                ${platform.connected ? '<i class="fas fa-check-circle mr-2"></i>Connected' : "Connect"}
+            </button>
+        `;
+        container.appendChild(platformElement);
+    });
+}
+
+// Render AI features section
+function renderAIFeatures() {
+    const container = document. getElementById("ai-features-container");
+    if (!container) return;
+    
+    container.innerHTML = "";
+    
+    const colorMap = {
+        1: { bg: "bg-primary/10", text: "text-primary" },
+        2: { bg: "bg-secondary/10", text: "text-secondary" },
+        3: { bg: "bg-accent/10", text:  "text-accent" }
+    };
+    
+    aiFeatures.forEach(feature => {
+        const colors = colorMap[feature.id];
+        const featureElement = document.createElement("div");
+        featureElement.className = "p-8 rounded-2xl border border-gray-200 hover:border-primary transition-colors";
+        featureElement.innerHTML = `
+            <div class="w-14 h-14 rounded-xl ${colors.bg} ${colors.text} flex items-center justify-center text-2xl mb-6">
+                <i class="fas fa-${feature.icon}"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-4">${feature.title}</h3>
+            <p class="text-gray-600 mb-6">${feature.description}</p>
+            <ul class="space-y-2">
+                ${feature.features. map(f => `
+                    <li class="flex items-center">
+                        <i class="fas fa-check text-secondary mr-2"></i>
+                        <span>${f}</span>
+                    </li>
+                `).join('')}
+            </ul>
+        `;
+        container.appendChild(featureElement);
+    });
+}
+
+// Render generated clips preview
+function renderGeneratedClips() {
+    const container = document. getElementById("clips-container");
+    if (!container) return;
+    
+    container.innerHTML = "";
+    
+    generatedClips.forEach(clip => {
+        const clipElement = document.createElement("div");
+        clipElement.className = "border border-gray-200 rounded-xl overflow-hidden";
+        clipElement.innerHTML = `
+            <div class="aspect-video bg-gray-900 relative">
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
+                        <i class="fas fa-play text-white"></i>
+                    </div>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4">
+                    <div class="text-white font-medium">${clip.title}</div>
+                    <div class="text-gray-300 text-sm">${clip.timeRange}</div>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="text-sm text-gray-500 mb-2">AI Generated Caption</div>
+                <div class="text-gray-800 mb-3">"${clip.caption}"</div>
+                <div class="flex flex-wrap gap-1">
+                    ${clip.hashtags.map(tag => `
+                        <span class="px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs">${tag}</span>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        container.appendChild(clipElement);
+    });
+}
+
+// Attach event listeners
+function attachEventListeners() {
+    // Connect platform buttons
+    document.addEventListener("click", (e) => {
+        if (e.target. closest("[data-action='process-video']")) {
+            handleProcessVideo();
+        }
+        if (e.target.closest("[data-action='upload-platform']")) {
+            handleUploadPlatform(e.target);
+        }
+        if (e.target.closest("[data-action='upload-all']")) {
+            handleUploadAll();
+        }
+        if (e.target.closest("[data-action='free-trial']")) {
+            handleFreeTrial();
+        }
+        if (e.target.closest("[data-action='watch-demo']")) {
+            handleWatchDemo();
+        }
+        if (e.target.closest(". connect-btn")) {
+            handleConnectPlatform(e. target);
+        }
+    });
+
+    // Navigation links
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function(e) {
+            if (this.getAttribute("href") === "#") {
+                e. preventDefault();
+            }
+        });
+    });
+}
+
+// Handle video processing
+function handleProcessVideo() {
+    const progressBar = document.getElementById("progress-bar");
+    const progressText = document.getElementById("progress-text");
+    const processBtn = document.querySelector("[data-action='process-video']");
+    
+    if (processBtn) {
+        processBtn. innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Processing...';
+        processBtn.disabled = true;
+    }
+    
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 5;
+        if (progressBar) {
+            progressBar. style.width = progress + "%";
+        }
+        if (progressText) {
+            progressText. textContent = progress + "%";
+        }
+        
+        if (progress >= 100) {
+            clearInterval(interval);
+            if (processBtn) {
+                processBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Processing Complete';
+                processBtn.classList.remove("bg-primary");
+                processBtn.classList.add("bg-green-600");
+            }
+            alert("Video processing complete! 12 potential clips identified.");
+        }
+    }, 200);
+}
+
+// Handle platform upload
+function handleUploadPlatform(button) {
+    const platformText = button.textContent. trim().split('\n')[0];
+    alert(`Starting upload to ${platformText}...`);
+}
+
+// Handle upload all
+function handleUploadAll() {
+    const uploadBtn = document.querySelector("[data-action='upload-all']");
+    if (uploadBtn) {
+        uploadBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Uploading...';
+        uploadBtn.disabled = true;
+        
+        setTimeout(() => {
+            uploadBtn. innerHTML = '<i class="fas fa-check mr-2"></i>Upload Complete';
+            uploadBtn.classList. remove("bg-secondary");
+            uploadBtn.classList. add("bg-green-600");
+            alert("All selected clips uploaded successfully to connected platforms!");
+        }, 3000);
+    }
+}
+
+// Handle connect platform
+function handleConnectPlatform(button) {
+    const platform = button.getAttribute("data-platform");
+    button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Connecting...';
+    button.disabled = true;
+    
+    setTimeout(() => {
+        button.innerHTML = '<i class="fas fa-check-circle mr-2"></i>Connected';
+        button.classList.remove("bg-gray-100", "text-gray-700");
+        button.classList.add("bg-green-100", "text-green-700");
+        alert(platform + " connected successfully!");
+    }, 1500);
+}
+
+// Handle free trial
+function handleFreeTrial() {
+    alert("Starting 14-day free trial!  You'll be redirected to signup.");
+}
+
+// Handle watch demo
+function handleWatchDemo() {
+    alert("Loading AI demo with sample video...");
+    const urlInput = document.querySelector("input[placeholder*='Paste YouTube URL']");
+    if (urlInput) {
+        urlInput. value = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+    }
+}
 // Application Configuration Data
 
 const socialPlatforms = [
