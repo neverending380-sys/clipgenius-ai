@@ -306,3 +306,54 @@
                                 <h5 class="font-bold mb-2">Upload to Connected Accounts</h5>
                                 <div class="flex space-x-2">
                                     <button class="px-4 py-2 bg-red-600 text-w
+/* Custom Tailwind Configuration */
+: root {
+    --primary:  #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #10b981;
+    --accent: #f59e0b;
+    --dark:  #1f2937;
+    --dark-light: #374151;
+}
+
+. gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+. glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.video-preview {
+    aspect-ratio: 9/16;
+}
+
+.progress-ring {
+    transform: rotate(-90deg);
+}
+
+.progress-ring__circle {
+    stroke-dasharray: 283;
+    stroke-dashoffset:  283;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+/* Animation configurations */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+. animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
