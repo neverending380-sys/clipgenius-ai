@@ -357,3 +357,79 @@
 . animate-pulse-slow {
     animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
+// Application Configuration Data
+
+const socialPlatforms = [
+    { 
+        "id": 1, 
+        "name": "YouTube", 
+        "icon": "youtube", 
+        "color": "red", 
+        "connected": true,
+        "description": "Auto-upload with optimized titles and descriptions"
+    },
+    { 
+        "id": 2, 
+        "name":  "TikTok", 
+        "icon": "tiktok", 
+        "color": "black", 
+        "connected": false,
+        "description": "Upload with trending sounds and hashtags"
+    },
+    { 
+        "id": 3, 
+        "name": "Instagram", 
+        "icon":  "instagram", 
+        "color": "purple", 
+        "connected": true,
+        "description": "Post directly to Reels with optimized captions"
+    }
+];
+
+const aiFeatures = [
+    {
+        "id": 1,
+        "title": "Smart Clip Detection",
+        "icon": "brain",
+        "description": "AI analyzes viewer engagement patterns to identify the most viral-worthy moments.",
+        "features": ["Emotion detection", "Audience retention analysis", "Automatic trimming"]
+    },
+    {
+        "id": 2,
+        "title": "AI Caption Generation",
+        "icon": "closed-captioning",
+        "description": "Automatically generate engaging captions that match the video content and trends.",
+        "features": ["Multiple caption styles", "Trend analysis integration", "Auto-timing sync"]
+    },
+    {
+        "id": 3,
+        "title": "Hashtag Optimization",
+        "icon": "hashtag",
+        "description": "Generate trending and relevant hashtags based on content and platform algorithms.",
+        "features": ["Platform-specific hashtags", "Trend prediction", "Performance analytics"]
+    }
+];
+
+const generatedClips = [
+    {
+        "id": 1,
+        "title": "Clip #1",
+        "timeRange": "0: 45 - 1:15",
+        "caption": "You won't believe what happens next! 😱",
+        "hashtags": ["#viral", "#shorts", "#funny"]
+    },
+    {
+        "id": 2,
+        "title": "Clip #2",
+        "timeRange": "3:22 - 3:52",
+        "caption": "This trick will save you hours! ⏰",
+        "hashtags":  ["#tutorial", "#tips", "#lifehack"]
+    },
+    {
+        "id": 3,
+        "title": "Clip #3",
+        "timeRange":  "8:15 - 8:45",
+        "caption": "The moment everything changed! 🔥",
+        "hashtags":  ["#epic", "#moment", "#trending"]
+    }
+];
